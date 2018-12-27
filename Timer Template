@@ -1,0 +1,107 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Timer : MonoBehaviour {
+
+    [Header("Timer Stats")]
+    public float currentTime = 0;
+    public float targetTime = 30f;
+    public float pauseTime = 0f;
+    public  bool paused = false;
+
+
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if(paused)
+        {
+            runPauseTime(); 
+        }
+        else
+        {
+            //run time up
+                //timerCountUp();
+            //run time down
+                //timerCountDown();
+        }
+	}
+
+    /// <summary>
+    /// Call to get the current Time with no rounding
+    /// </summary>
+    /// <returns>The current time.</returns>
+    float getCurrentTime()
+    {
+        return currentTime;
+    }
+
+    /// <summary>
+    /// get current time but rounded to no decimal places
+    /// </summary>
+    /// <returns>The current time in rounded string.</returns>
+    string getCurrentTimeInRoundedString()
+    {
+        return currentTime.ToString("N0");    
+    }
+
+    /// <summary>
+    /// call for timer to decrease to 0
+    /// </summary>
+    void timerCountDown()
+    {
+        //decriments time
+        currentTime -= Time.deltaTime;
+
+        //checks if time is complete
+        if (currentTime >= 0)
+            //repalce line below with action that should happen when time is up
+            print("Time Complete");
+    }
+
+    /// <summary>
+    /// call for timer to increase to target Time
+    /// </summary>
+    void timerCountUp()
+    {
+        //incriment Time
+        currentTime += Time.deltaTime;
+
+        //checks if time is complete
+        if (currentTime >= targetTime)
+        {
+            //repalce line below with action that should happen when time is up
+            print("Time Complete");
+
+            //run pause 
+            PauseAndUnpause();
+        }
+    }
+
+    void PauseAndUnpause()
+    {
+        paused = !paused;
+    }
+
+
+    /// <summary>
+    /// run paused time after time is complete currently, otherwise pause on button press from update method
+    /// </summary>
+    void runPauseTime()
+    {
+        pauseTime += Time.deltaTime;
+    }
+
+    /// <summary>
+    /// Reset paused Time
+    /// </summary>
+    void resetPausedTime()
+    {
+        pauseTime = 0;
+    }
+}
