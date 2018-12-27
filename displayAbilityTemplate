@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class displayAbility : MonoBehaviour {
+
+    //the current button this script is attached too
+    Button thisButton;
+
+    //scriptable object ability that can be placed in the editor
+    public Ability a;
+
+	// Use this for initialization
+	void Start () {
+        thisButton = GetComponent<Button>();
+        thisButton.image.sprite = a.thumbnail;
+        thisButton.GetComponent<Text>().text = a.name;
+        thisButton.onClick.AddListener(action);
+	}
+
+    /// <summary>
+    /// standard action to add for button press
+    /// </summary>
+    void action()
+    {
+        //add action to do here
+        //may be spawn item or perform event
+        //may also outsource to another script
+    }
+}
