@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UIManager : MonoBehaviour {
+
+    Timer timer;
+
+    [Header("UI Elements")]
+    public Text timerText;
+
+	// Use this for initialization
+	void Start () {
+        //use to inititalize timer if this is on the same object.
+        timer = GetComponent<Timer>();
+    }
+
+    /// <summary>
+    /// Fixed frame refeshing
+    /// </summary>
+	private void FixedUpdate()
+	{
+        //updates timer text
+        updateTimerText();
+	}
+
+    /// <summary>
+    /// updates the current timerText from the timer
+    /// </summary>
+	void updateTimerText()
+    {
+        timerText.text = timer.getCurrentTimeInRoundedString();
+    }
+}
